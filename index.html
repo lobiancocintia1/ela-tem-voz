@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Cíntia Lo Bianco">
+    <title>Ela Tem Voz | Portal de Amparo e Proteção</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f3f0f6 0%, #eef3f7 100%);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --glass-border: rgba(115, 95, 125, 0.15);
+            
+            --marsala: #8a7391;
+            --marsala-light: #c4b4c8;
+            --marsala-dark: #6b5272;
+            --primary: #7a6381;
+            
+            --text-main: #2d2630;
+            --text-muted: #4a3f4e;
+            
+            --danger: #a63a50;        
+            --danger-hover: #8c2e41;
+            
+            --shadow: 0 8px 25px 0 rgba(91, 74, 98, 0.08);
+            --radius: 20px;
+            --font-scale: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            overflow-x: hidden;
+            font-size: var(--font-scale);
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* 🧭 TOPO E ACESSIBILIDADE */
+        .top-wrapper {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .accessibility-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 5%;
+            background: rgba(107, 82, 114, 0.05);
+            border-bottom: 1px solid rgba(115, 95, 125, 0.1);
+        }
+
+        .access-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--marsala);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .access-btn:hover {
+            background: var(--marsala);
+            color: #fff;
+            border-color: var(--marsala);
+        }
+
+        header {
+            padding: 14px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-container i {
+            font-size: 2.2rem;
+            color: var(--marsala);
+        }
+
+        .logo-text {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--marsala);
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+        }
+
+        nav button.nav-link {
+            background: none;
+            border: none;
+            color: var(--marsala);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        nav button.nav-link:hover,
+        nav button.nav-link.active {
+            color: var(--danger);
+        }
+
+        /* 📱 SISTEMA DE TELAS */
+        .screen {
+            display: none;
+            width: 100%;
+            padding: 24px 5% 90px 5%;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 🌸 TELA INICIAL */
+        .hero-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .hero-title {
+            font-size: clamp(1.3rem, 2.5vw, 2.1rem);
+            color: var(--text-main);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero-title span {
+            color: var(--marsala);
+        }
+
+        .slogan-box {
+            padding: 18px;
+            width: 100%;
+        }
+
+        .slogan-box p {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            padding: 4px 0;
+            font-weight: 700;
+        }
+
+        .slogan-box p.highlight {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .slogan-box p.sozinha {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .line-break-mobile, .line-break-rights, .line-break-title, .line-break-privacy {
+            display: inline;
+        }
+
+        .divider-dashed {
+            border: none;
+            border-top: 1px dashed rgba(138, 115, 145, 0.3);
+            margin: 10px auto;
+            width: 80%;
+        }
+
+        /* 🔘 Menu Inicial em Grid Centralizado */
+        .home-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+            margin-top: 6px;
+            padding-left: 12px;
+            padding-right: 12px;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        .menu-card-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 18px 10px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            max-width: 220px;
+        }
+
+        .menu-card-btn i {
+            font-size: 1.5rem;
+            color: var(--marsala);
+        }
+
+        .menu-card-btn span {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .menu-card-btn:hover {
+            background: var(--marsala);
+            border-color: var(--marsala);
+        }
+
+        .menu-card-btn:hover i,
+        .menu-card-btn:hover span {
+            color: #ffffff;
+        }
+
+        /* 📖 OUTRAS TELAS */
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 1.5rem;
+            color: var(--marsala);
+            margin-bottom: 4px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .section-title h2 span {
+            display: block;
+        }
+
+        .section-title p {
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .grid-cards, .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+        }
+
+        .card, .emergency-card {
+            padding: 18px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 12px;
+        }
+
+        .card i {
+            font-size: 1.5rem;
+            color: var(--marsala);
+            margin-bottom: 8px;
+        }
+
+        .card h3, .emergency-card h3 {
+            font-size: 1rem;
+            margin-bottom: 6px;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .card p, .emergency-card span {
+            color: var(--text-main);
+            font-size: 0.85rem;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .emergency-card .number {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--marsala);
+            text-decoration: none;
+            display: block;
+            margin: 4px 0;
+        }
+
+        .back-home-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-home-btn {
+            background: var(--marsala);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Estilo padrão para o link de email */
+        #emailLink {
+            color: var(--marsala);
+            font-weight: 700;
+            text-decoration: none;
+            display: block;
+            margin-top: 8px;
+            white-space: nowrap;
+        }
+
+        /* 🆘 BARRA INFERIOR DE EMERGÊNCIA (SAIR RÁPIDO & 180) */
+        .floating-actions {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: transparent;
+            backdrop-filter: none;
+            border-top: none;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 1000;
+            box-shadow: none;
+        }
+
+        .action-btn-180, .sos-escape-btn {
+            background: var(--danger);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            max-width: 160px;
+            flex: 1;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            cursor: pointer;
+            border: none;
+        }
+
+        .action-btn-180:hover, .sos-escape-btn:hover {
+            background: var(--danger-hover);
+        }
+
+        /* 👁️ MODO ALTO CONTRASTE */
+        body.high-contrast {
+            background: #000000 !important;
+            color: #ffffff !important;
+        }
+        body.high-contrast .glass-card,
+        body.high-contrast .top-wrapper,
+        body.high-contrast .accessibility-bar,
+        body.high-contrast .emergency-card,
+        body.high-contrast .menu-card-btn,
+        body.high-contrast .access-btn {
+            background: #121212 !important;
+            border-color: #ffffff !important;
+            color: #ffffff !important;
+        }
+        body.high-contrast .floating-actions {
+            background: transparent !important;
+            border-color: transparent !important;
+        }
+        body.high-contrast .action-btn-180,
+        body.high-contrast .sos-escape-btn {
+            background: #8a7391 !important;
+            border: 1px solid #ffffff !important;
+            color: #ffffff !important;
+        }
+        body.high-contrast p, body.high-contrast h1, body.high-contrast h2, body.high-contrast h3, body.high-contrast span, body.high-contrast button {
+            color: #ffffff !important;
+        }
+        body.high-contrast .divider-dashed {
+            border-top-color: #ffffff !important;
+        }
+        body.high-contrast #emailLink {
+            color: #ffffff !important;
+        }
+
+        /* Responsividade para Celulares */
+        @media (max-width: 768px) {
+            nav {
+                display: flex !important;
+                width: 100%;
+                justify-content: center;
+                overflow-x: auto;
+                padding: 6px 0;
+            }
+
+            nav ul {
+                display: flex;
+                gap: 10px;
+                flex-wrap: nowrap;
+                justify-content: center;
+                width: 100%;
+                padding: 0 10px;
+            }
+
+            nav button.nav-link {
+                font-size: 0.75rem;
+                white-space: nowrap;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 8px;
+                padding: 10px 5%;
+            }
+            
+            .home-menu-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                overflow: visible;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .menu-card-btn {
+                min-width: auto;
+                padding: 14px 4px;
+            }
+
+            .line-break-mobile, .line-break-rights, .line-break-title {
+                display: block;
+            }
+
+            .line-break-privacy {
+                display: block;
+            }
+        }
+
+        /* Tela de Computador / Desktop */
+        @media (min-width: 769px) {
+            .line-break-privacy {
+                display: inline;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🧭 Topo unificado com Acessibilidade e Logo -->
+    <div class="top-wrapper">
+        <div class="accessibility-bar">
+            <button class="access-btn" onclick="toggleContrast()">
+                <i class="fas fa-adjust"></i> Contraste
+            </button>
+            <button class="access-btn" onclick="changeFontSize(1)">
+                <i class="fas fa-plus"></i> A+ Fonte
+            </button>
+            <button class="access-btn" onclick="changeFontSize(-1)">
+                <i class="fas fa-minus"></i> A- Fonte
+            </button>
+        </div>
+        <header>
+            <a class="logo-container" onclick="showScreen('inicio')">
+                <i class="fas fa-shield-heart"></i>
+                <span class="logo-text">Ela Tem Voz</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><button class="nav-link active" id="nav-inicio" onclick="showScreen('inicio')">Início</button></li>
+                    <li><button class="nav-link" id="nav-projeto" onclick="showScreen('projeto')">Projeto</button></li>
+                    <li><button class="nav-link" id="nav-fundadora" onclick="showScreen('fundadora')">Fundadora</button></li>
+                    <li><button class="nav-link" id="nav-contato" onclick="showScreen('contato')">Contato</button></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <!-- 🌸 TELA 1: INÍCIO -->
+    <div id="screen-inicio" class="screen active">
+        <div class="hero-content">
+            <h1 class="hero-title">Sua voz importa. <span class="line-break-title"><span>Sua segurança também.</span></span></h1>
+            
+            <div class="glass-card slogan-box">
+                <p><strong>Informação, acolhimento <span class="line-break-mobile">e proteção para as mulheres.</span></strong></p>
+                <hr class="divider-dashed">
+                <p class="highlight"><strong>Conhecer seus direitos é <span class="line-break-rights">o primeiro passo para a liberdade.</span></strong></p>
+                <hr class="divider-dashed">
+                <p class="sozinha"><strong>Você não está sozinha.</strong></p>
+            </div>
+
+            <div class="home-menu-grid">
+                <button class="menu-card-btn" onclick="showScreen('direitos')">
+                    <i class="fas fa-balance-scale"></i>
+                    <span>Direitos</span>
+                </button>
+                <button class="menu-card-btn" onclick="showScreen('emergencia')">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Emergência</span>
+                </button>
+                <button class="menu-card-btn" onclick="showScreen('seguranca')">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Privacidade</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📖 TELA 2: PROJETO -->
+    <div id="screen-projeto" class="screen">
+        <div class="section-title">
+            <h2>Sobre o Projeto</h2>
+            <p>Conheça a proposta desta iniciativa.</p>
+        </div>
+        <div class="glass-card card">
+            <i class="fas fa-shield-heart"></i>
+            <h3>Propósito e Missão</h3>
+            <p>O <strong>Ela Tem Voz</strong> é um espaço digital seguro e acolhedor dedicado a fornecer orientações essenciais, amparo e informações sobre direitos fundamentais e canais de proteção para mulheres.</p>
+        </div>
+        <div class="back-home-container">
+            <button class="back-home-btn" onclick="showScreen('inicio')"><i class="fas fa-arrow-left"></i> Início</button>
+        </div>
+    </div>
+
+    <!-- 👩 TELA 3: FUNDADORA -->
+    <div id="screen-fundadora" class="screen">
+        <div class="section-title">
+            <h2>Sobre a Fundadora</h2>
+            <p>Quem está por trás deste espaço.</p>
+        </div>
+        <div class="glass-card card">
+            <i class="fas fa-user-circle"></i>
+            <h3>Cíntia Lo Bianco</h3>
+            <p>Idealizadora do projeto com foco em impacto social. Estudante de Gestão da Tecnologia da Informação (GTI) na Gran Faculdade, unindo o olhar humanizado à proteção de dados e segurança digital para garantir total sigilo e privacidade.</p>
+        </div>
+        <div class="back-home-container">
+            <button class="back-home-btn" onclick="showScreen('inicio')"><i class="fas fa-arrow-left"></i> Início</button>
+        </div>
+    </div>
+
+    <!-- 📬 TELA 4: CONTATO -->
+    <div id="screen-contato" class="screen">
+        <div class="section-title" style="margin-top: 35px;">
+            <h2>Contato do Site</h2>
+            <p>Fale conosco.</p>
+        </div>
+        <div style="display: flex; justify-content: center; width: 100%; margin-top: 15px;">
+            <div class="glass-card card" style="display: inline-block; text-align: center; margin-bottom: 20px; padding: 22px 28px; width: auto; max-width: 100%;">
+                <i class="fas fa-envelope" style="display: block; margin: 0 auto;"></i>
+                <a href="mailto:cintia.lobianco.elatemvoz@gmail.com" id="emailLink">
+                    cintia.lobianco.elatemvoz@gmail.com
+                </a>
+            </div>
+        </div>
+        <div class="back-home-container" style="margin-top: 35px;">
+            <button class="back-home-btn" onclick="showScreen('inicio')"><i class="fas fa-arrow-left"></i> Início</button>
+        </div>
+    </div>
+
+    <!-- ⚖️ TELA 5: DIREITOS -->
+    <div id="screen-direitos" class="screen">
+        <div class="section-title">
+            <h2>Conheça Seus Direitos</h2>
+            <p>Autonomia e amparo legal.</p>
+        </div>
+        <div class="grid-cards">
+            <div class="glass-card card">
+                <i class="fas fa-balance-scale"></i>
+                <h3>Lei Maria da Penha</h3>
+                <p>A Lei Maria da Penha (Lei nº 11.340/2006), sancionada em 7 de agosto de 2006, cria regras para prevenir, punir e acabar com a violência contra a mulher no Brasil. Ela protege mulheres em ambiente doméstico, familiar ou em relações de namoro ou afeto, independentemente de classe social, raça ou orientação sexual.</p>
+            </div>
+            <div class="glass-card card">
+                <i class="fas fa-history"></i>
+                <h3>Origem da Lei</h3>
+                <p><strong>Quem é:</strong> Maria da Penha Maia Fernandes é uma farmacêutica que ficou paraplégica após sofrer duas tentativas de homicídio do ex-marido em 1983.<br><strong>Condenação:</strong> O Brasil demorou a punir o agressor e foi condenado pela OEA (Organização dos Estados Americanos) por negligência.<br><strong>Conquista:</strong> A lei levou o nome dela como símbolo da luta por justiça e direitos humanos no país.</p>
+            </div>
+            <div class="glass-card card">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Os Cinco Tipos de Violência</h3>
+                <p><strong>Física:</strong> Ofensa que machuca o corpo ou a saúde da mulher.<br><strong>Psicológica:</strong> Ações que causam dano emocional, medo, controle ou insultam a autoestima.<br><strong>Moral:</strong> Calúnia, difamação ou injúria contra a honra da mulher.<br><strong>Patrimonial:</strong> Destruição, retenção ou furto de bens, dinheiro e ferramentas de trabalho.<br><strong>Sexual:</strong> Forçar a mulher a ter atos sexuais contra a vontade por meio de medo ou força.</p>
+            </div>
+            <div class="glass-card card">
+                <i class="fas fa-gavel"></i>
+                <h3>Medidas de Proteção e Punição</h3>
+                <p><strong>Medida Protetiva:</strong> O juiz pode ordenar que o agressor saia de casa, não chegue perto da vítima ou fique proibido de ligar e mandar mensagens.<br><strong>Prisão:</strong> O agressor que descumprir a medida protetiva pode ser preso.<br><strong>Sem penas leves:</strong> A lei proíbe que o agressor pague o crime apenas com cestas básicas ou multas em dinheiro isoladas.<br><strong>Apoio:</strong> Garante atendimento médico, psicológico e abrigos para mulheres em perigo real.</p>
+            </div>
+        </div>
+        <div class="back-home-container"><button class="back-home-btn" onclick="showScreen('inicio')"><i class="fas fa-arrow-left"></i> Início</button></div>
+    </div>
+
+    <!-- 📞 TELA 6: EMERGÊNCIA (DEAMs de Todos os Estados do Brasil) -->
+    <div id="screen-emergencia" class="screen">
+        <div class="section-title">
+            <h2>Emergência e DEAMs Estaduais</h2>
+            <p>Canais ativos 24 horas e Delegacias Especializadas de Atendimento à Mulher em todo o Brasil.</p>
+        </div>
+        <div class="emergency-grid" id="container-emergencia-js">
+            <div class="glass-card emergency-card">
+                <h3>Central de Atendimento à Mulher</h3>
+                <span class="number">Ligue 180</span>
+                <span>Serviço nacional, gratuito e confidencial para denúncias e orientações.</span>
+            </div>
+            <div class="glass-card emergency-card">
+                <h3>Polícia Militar (Emergência)</h3>
+                <span class="number">Ligue 190</span>
+                <span>Para situações de perigo imediato, flagrante ou violência em andamento.</span>
+            </div>
+            <div class="glass-card emergency-card">
+                <h3>Disque Denúncia</h3>
+                <span class="number">Ligue 181</span>
+                <span>Canal para denúncias anônimas sobre crimes e violência.</span>
+            </div>
+            <!-- Acre -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Rio Branco (AC)</h3>
+                <span class="number">(68) 3221-5020</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Rio Branco.</span>
+            </div>
+            <!-- Alagoas -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Maceió (AL)</h3>
+                <span class="number">(82) 3315-4309</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Maceió.</span>
+            </div>
+            <!-- Amapá -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Macapá (AP)</h3>
+                <span class="number">(96) 3212-9100</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Macapá.</span>
+            </div>
+            <!-- Amazonas -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Manaus (AM)</h3>
+                <span class="number">(92) 3244-3475</span>
+                <span>Delegacia Especializada em Crimes Contra a Mulher - Manaus.</span>
+            </div>
+            <!-- Bahia -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Salvador (BA)</h3>
+                <span class="number">(71) 3116-7140</span>
+                <span>Delegacia Especial de Atendimento à Mulher - Brotas.</span>
+            </div>
+            <!-- Ceará -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Fortaleza (CE)</h3>
+                <span class="number">(85) 3101-2950</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Fortaleza.</span>
+            </div>
+            <!-- Distrito Federal -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Brasília (DF)</h3>
+                <span class="number">(61) 3207-6237</span>
+                <span>Casa da Mulher Brasileira - 901 Sul.</span>
+            </div>
+            <!-- Espírito Santo -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Vitória (ES)</h3>
+                <span class="number">(27) 3138-1439</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Vitória.</span>
+            </div>
+            <!-- Goiás -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Goiânia (GO)</h3>
+                <span class="number">(62) 3201-2740</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Goiânia.</span>
+            </div>
+            <!-- Maranhão -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - São Luís (MA)</h3>
+                <span class="number">(98) 3214-8659</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - São Luís.</span>
+            </div>
+            <!-- Mato Grosso -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Cuiabá (MT)</h3>
+                <span class="number">(65) 3901-5703</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Cuiabá.</span>
+            </div>
+            <!-- Mato Grosso do Sul -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Campo Grande (MS)</h3>
+                <span class="number">(67) 3384-6099</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Campo Grande.</span>
+            </div>
+            <!-- Minas Gerais -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Belo Horizonte (MG)</h3>
+                <span class="number">(31) 3304-6850</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Barro Preto.</span>
+            </div>
+            <!-- Pará -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Belém (PA)</h3>
+                <span class="number">(91) 3246-6873</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Belém.</span>
+            </div>
+            <!-- Paraíba -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - João Pessoa (PB)</h3>
+                <span class="number">(83) 3218-5319</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - João Pessoa.</span>
+            </div>
+            <!-- Paraná -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Curitiba (PR)</h3>
+                <span class="number">(41) 3326-3408</span>
+                <span>Delegacia da Mulher - Curitiba.</span>
+            </div>
+            <!-- Pernambuco -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Recife (PE)</h3>
+                <span class="number">(81) 3184-3352</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Recife.</span>
+            </div>
+            <!-- Piauí -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Teresina (PI)</h3>
+                <span class="number">(86) 3216-5042</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Teresina.</span>
+            </div>
+            <!-- Rio de Janeiro -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Rio de Janeiro (RJ)</h3>
+                <span class="number">(21) 2332-9999</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Centro/RJ.</span>
+            </div>
+            <!-- Rio Grande do Norte -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Natal (RN)</h3>
+                <span class="number">(84) 3232-2530</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Natal.</span>
+            </div>
+            <!-- Rio Grande do Sul -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Porto Alegre (RS)</h3>
+                <span class="number">(51) 3288-2173</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Porto Alegre.</span>
+            </div>
+            <!-- Rondônia -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Porto Velho (RO)</h3>
+                <span class="number">(69) 3216-8808</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Porto Velho.</span>
+            </div>
+            <!-- Roraima -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Boa Vista (RR)</h3>
+                <span class="number">(95) 4009-4738</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Boa Vista.</span>
+            </div>
+            <!-- Santa Catarina -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Florianópolis (SC)</h3>
+                <span class="number">(48) 3665-6358</span>
+                <span>Delegacia de Proteção à Mulher - Florianópolis.</span>
+            </div>
+            <!-- São Paulo -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - São Paulo (SP)</h3>
+                <span class="number">(11) 3275-8000</span>
+                <span>Delegacia da Mulher - Casa da Mulher Brasileira (Cambuci).</span>
+            </div>
+            <!-- Sergipe -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Aracaju (SE)</h3>
+                <span class="number">(79) 3232-6262</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Aracaju.</span>
+            </div>
+            <!-- Tocantins -->
+            <div class="glass-card emergency-card">
+                <h3>DEAM - Palmas (TO)</h3>
+                <span class="number">(63) 3218-6879</span>
+                <span>Delegacia Especializada de Atendimento à Mulher - Palmas.</span>
+            </div>
+        </div>
+        <div class="back-home-container"><button class="back-home-btn" onclick="showScreen('inicio')"><i class="fas fa-arrow-left"></i> Início</button></div>
+    </div>
+
+    <!-- 🔒 TELA 7: PRIVACIDADE E SEGURANÇA DIGITAL -->
+    <div id="screen-seguranca" class="screen">
+        <div class="section-title">
+            <h2>Privacidade <span class="line-break-privacy">E Segurança Digital</span></h2>
+            <p>Orientações práticas para navegar <span class="line-break-privacy">e apagar rastros com total sigilo.</span></p>
+        </div>
+        <div class="glass-card card">
+            <i class="fas fa-user-shield"></i>
+            <h3>Orientações de Privacidade</h3>
+            <p>Para navegar em um site de proteção de forma segura e privada, a mulher deve evitar deixar rastros digitais que possam ser descobertos pelo agressor. O uso de ferramentas de privacidade impede que o histórico de navegação revele a busca por ajuda.</p>
+        </div>
+        <div class="glass-card card">
+            <i class="fas fa-compass"></i>
+            <h3>Práticas de Navegação Segura</h3>
+            <p>
+                <strong>Navegação Anônima</strong> - Use o modo privado ou anônimo do navegador (Chrome, Safari, Firefox). Isso impede que o histórico de acessos, cookies e dados de formulários fiquem salvos no aparelho após fechar a aba.<br><br>
+                <strong>Limpeza de Histórico</strong> - Se não usou o modo anônimo, apague imediatamente o histórico de navegação, o cache e os cookies nas configurações do navegador.<br><br>
+                <strong>Botão de Saída Rápida</strong> - Muitos sites de proteção possuem um botão visível escrito "Sair Rápido" ou "Fechar Janela". Ao ser clicado, ele redireciona a tela instantaneamente para um site neutro (como o Google ou um portal de notícias) caso o agressor se aproxime.<br><br>
+                <strong>Aba Neutra Aberta</strong> - Mantenha sempre outra aba aberta com um assunto comum (receitas, notícias, redes sociais) para alternar rapidamente de tela se necessário.
+            </p>
+        </div>
+
+        <div class="glass-card card">
+            <i class="fas fa-history"></i>
+            <h3>Como Apagar o Histórico de Chamadas e Conversas</h3>
+            <p>
+                Para apagar o histórico de chamadas do telefone, o procedimento deve ser feito diretamente no aplicativo oficial de ligações (ícone de telefone) do aparelho. O processo apaga o registro de chamadas efetuadas, recebidas e perdidas.<br><br>
+                <strong>No iPhone (iOS):</strong><br>
+                1- Abra o aplicativo Telefone (ícone verde com o desenho de um telefone).<br>
+                2- Toque na aba Recentes (ícone de relógio na barra inferior).<br>
+                3- Para apagar todas as chamadas: Toque em Editar (canto superior direito), depois em Selecionar e clique em Apagar (canto superior esquerdo). Confirme em Apagar Todas as Recentes.<br>
+                4- Para apagar apenas uma chamada específica: Deslize o dedo da direita para a esquerda sobre o nome ou número que deseja remover e toque em Apagar (lixeira vermelha).<br><br>
+                <strong>Em Celulares Android (Samsung):</strong><br>
+                1- Abra o aplicativo Telefone.<br>
+                2- Toque na aba Recentes na parte inferior da tela.<br>
+                3- Para apagar uma ou mais chamadas: Toque e segure o dedo sobre a chamada que deseja remover. Marque a caixinha ao lado de cada ligação que quer apagar e toque no ícone de Excluir (lixeira) na barra inferior.<br>
+                4- Para apagar o histórico completo: Toque nos três pontinhos no canto superior direito, selecione Apagar e depois toque na opção Tudo (no topo esquerdo) antes de clicar em Apagar na parte inferior.<br><br>
+                <strong>Em Celulares Android (Motorola, Xiaomi ou Google):</strong><br>
+                1- Abra o aplicativo Telefone.<br>
+                2- Toque na aba Recentes (ícone de relógio).<br>
+                3- Toque e segure o número ou nome desejado e selecione Excluir ou toque no ícone da lixeira.<br>
+                4- Para apagar o histórico completo: Toque nos três pontinhos localizados no canto superior direito (dentro da barra de pesquisa), selecione Histórico de chamadas, toque novamente nos três pontinhos no canto superior direito e escolha Limpar histórico de chamadas. Confirme tocando em OK.<br><br>
+                <strong>Para apagar conversas do WhatsApp:</strong><br>
+                O procedimento pode ser feito limpando o conteúdo de um chat (mantendo o nome da pessoa na lista) ou excluindo a conversa por completo. O processo apaga mensagens de texto, áudios, fotos e vídeos trocados.<br><br>
+                <strong>No iPhone (iOS):</strong><br>
+                - Apagar uma conversa inteira: Abra o WhatsApp, vá na aba Conversas e deslize o dedo da direita para a esquerda sobre o chat que deseja remover. Toque em Mais (três pontinhos) e selecione Apagar conversa.<br>
+                - Limpar apenas as mensagens (mantendo o chat na lista): Dentro da conversa com a pessoa, toque no nome dela no topo da tela. Role até o final da página e toque em Limpar conversa. Confirme selecionando Apagar todas as mensagens.<br>
+                - Apagar todas as conversas do aplicativo de uma vez: Vá em Configurações (engrenagem no canto inferior direito) > Conversas > Apagar todas as conversas. Digite seu número de telefone para confirmar.<br><br>
+                <strong>No Android:</strong><br>
+                - Apagar uma conversa inteira: Abra o WhatsApp na aba Conversas. Toque e segure o dedo sobre o chat que deseja remover até aparecer uma marca de verificação. Toque no ícone da Lixeira no topo da tela e confirme em Apagar conversa.<br>
+                - Limpar apenas as mensagens (mantendo o chat na lista): Abra a conversa com a pessoa, toque nos três pontinhos no canto superior direito, selecione Mais e depois toque em Limpar conversa. Deixe marcada a caixinha para apagar as mídias da galeria e toque em Limpar.<br>
+                - Apagar todas as conversas do aplicativo de uma vez: Na tela principal das conversas, toque nos três pontinhos (canto superior direito) > Configurações > Conversas > Histórico de conversas > Apagar todas as conversas. Confirme a ação.<br><br>
+                <strong>Dica Extra de Segurança: Mensagens Temporárias</strong><br>
+                Se você for iniciar uma nova conversa que precisa ser mantida em segredo, pode ativar as Mensagens Temporárias.<br>
+                1- Entre na conversa com a pessoa e toque no nome dela no topo da tela.<br>
+                2- Procure por Mensagens temporárias.<br>
+                3- Escolha um prazo (como 24 horas). Todas as novas mensagens enviadas ou recebidas sumirão sozinhas e automaticamente do seu celular e do celular da outra pessoa assim que o tempo acabar.
+            </p>
+        </div>
+
+        <div class="glass-card card">
+            <i class="fas fa-bell-slash"></i>
+            <h3>Desativar Notificações na Tela Bloqueada</h3>
+            <p>
+                Para desativar as notificações na tela bloqueada, você deve alterar as configurações de privacidade do próprio sistema operacional do celular (Android ou iOS). Isso impede que qualquer pessoa veja o conteúdo das mensagens ou quem enviou quando o aparelho estiver com a tela apagada ou travada.<br><br>
+                <strong>No iPhone (iOS):</strong><br>
+                Para ocultar apenas o texto das mensagens (Recomendado):<br>
+                1- Abra os Ajustes (ícone de engrenagem).<br>
+                2- Toque em Notificações e depois em Pré-visualizações.<br>
+                3- Selecione Quando Desbloqueado (o texto só aparece se o celular reconhecer seu rosto/digital) ou Nunca (o texto nunca aparece na tela inicial).<br><br>
+                Para tirar o WhatsApp (outro app) totalmente da tela bloqueada:<br>
+                1- Vá em Ajustes > Notificações.<br>
+                2- Role a lista para baixo e toque em WhatsApp.<br>
+                3- Abaixo de "Alertas", desmarque a caixinha Tela Bloqueada.<br><br>
+                <strong>Em Celulares Android (Samsung):</strong><br>
+                1- Abra as Configurações do aparelho.<br>
+                2- Toque em Tela de bloqueio e AOD (ou apenas Tela de bloqueio).<br>
+                3- Toque em Notificações.<br>
+                4- Ative a opção Ocultar conteúdo (assim a tela avisa que há uma mensagem, mas esconde o texto e o nome de quem mandou) ou mude para 'Não mostrar notificações' se quiser ocultar tudo completamente.<br><br>
+                <strong>Em Celulares Android (Motorola, Xiaomi ou Google):</strong><br>
+                1- Abra as Configurações do celular.<br>
+                2- Procure por Apps e notificações (ou Notificações e Centro de Controle).<br>
+                3- Toque em Notificações na tela de bloqueio.<br>
+                4- Escolha a opção Ocultar conversas e notificações silenciosas ou Não mostrar nenhuma notificação.
+            </p>
+        </div>
+
+        <div class="glass-card card">
+            <i class="fas fa-lock"></i>
+            <h3>Trancar Conversas com Código Secreto no WhatsApp</h3>
+            <p>
+                Para trancar conversas com um código secreto no WhatsApp, você deve primeiro mover o chat para a pasta oculta e depois criar uma senha exclusiva. Esse recurso faz com que a pasta de conversas protegidas suma por completo do aplicativo, reaparecendo apenas se você digitar a sua palavra-chave ou emoji na barra de pesquisas do app.<br><br>
+                <strong>Passo 1: Trancar a conversa</strong><br>
+                1- Abra o WhatsApp e localize o chat que deseja esconder.<br>
+                2- Pressione e segure o dedo em cima da conversa (ou entre nela e toque no nome do contato no topo).<br>
+                3- Toque nos três pontinhos (no Android) ou selecione diretamente a opção Trancar conversa.<br>
+                4- Toque em Continuar e confirme usando a senha ou biometria padrão do seu próprio celular. A conversa sairá da tela inicial.<br><br>
+                <strong>Passo 2: Criar o Código Secreto e Ocultar a Pasta</strong><br>
+                1- Na tela principal das conversas do WhatsApp, arraste o dedo de cima para baixo para fazer aparecer a aba 'Conversas trancadas' no topo e toque nela.<br>
+                2- Use a biometria do seu celular para abrir a pasta.<br>
+                3- Toque no ícone de Configurações (ou nos três pontinhos) no canto superior direito.<br>
+                4- Ative a chave da opção Ocultar conversas trancadas.<br>
+                5- Toque em Código secreto e depois em Crie um código secreto.<br>
+                6- Defina a senha desejada (que pode conter letras, números e emojis). Toque em Avançar, confirme o código e toque em OK.<br><br>
+                <strong>Como encontrar a conversa depois de oculta?</strong><br>
+                Como a pasta sumirá totalmente da pasta principal, para vê-la novamente você deve tocar na barra de pesquisa do WhatsApp (lupa).
+            </p>
+        </div>
+        <div class="back-home-container"><button class="back-home-btn" onclick="showScreen('inicio')"><i class="fas fa-arrow-left"></i> Início</button></div>
+    </div>
+
+    <!-- 🆘 BARRA FLUTUANTE DE AÇÃO RÁPIDA (FIXA NO RODAPÉ) -->
+    <div class="floating-actions">
+        <a href="https://www.google.com" class="sos-escape-btn" onclick="sairRapido(event)">
+            <i class="fas fa-sign-out-alt"></i> Sair Rápido
+        </a>
+        <a href="tel:180" class="action-btn-180">
+            <i class="fas fa-phone-alt"></i> Ligar 180
+        </a>
+    </div>
+
+    <!-- ⚙️ SCRIPTS DE FUNCIONALIDADE -->
+    <script>
+        // Função para Alternar Telas
+        function showScreen(screenId) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(s => s.classList.remove('active'));
+
+            const target = document.getElementById('screen-' + screenId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Atualizar navegação ativa
+            const navLinks = document.querySelectorAll('nav .nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + screenId);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+        }
+
+        // Função do Botão de Saída Rápida (Redirecionamento de Emergência)
+        function sairRapido(event) {
+            event.preventDefault();
+            window.location.replace("https://www.google.com");
+        }
+
+        // Função de Acessibilidade: Contraste
+        function toggleContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+        // Função de Acessibilidade: Ajuste de Fonte
+        let currentScale = 1;
+        function changeFontSize(direction) {
+            currentScale += direction * 0.05;
+            if (currentScale < 0.85) currentScale = 0.85;
+            if (currentScale > 1.35) currentScale = 1.35;
+            document.documentElement.style.setProperty('--font-scale', currentScale + 'rem');
+        }
+    </script>
+</body>
+</html>
