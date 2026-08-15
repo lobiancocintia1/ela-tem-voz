@@ -171,8 +171,10 @@ margin: 0 auto;
 animation: fadeIn .3s ease;
 }
 
-#screen-direitos {
-max-width: 1450px;
+#screen-direitos,
+#screen-lgpd-detalhes,
+#screen-confidencial-detalhes {
+max-width: 1200px;
 }
 
 .screen.active {
@@ -251,17 +253,26 @@ background: #fff;
 
 .hero-image-box img:hover {transform: translateY(-3px);}
 
-.imagem-fundadora {
+.imagem-fundadora-container {
 width: 100%;
 max-width: 220px;
 height: 220px;
 border-radius: 50%;
 border: 3px solid var(--marsala-light);
 box-shadow: 0 4px 14px rgba(138,115,145,.18);
-margin: 20px auto 0 auto;
-display: block;
-object-fit: cover;
+margin: 30px auto 0 auto;
+overflow: hidden;
 background: #fff;
+position: relative;
+}
+
+.imagem-fundadora {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    transform: scale(1.15);
+    display: block;
 }
 
 .imagem-projeto {
@@ -336,6 +347,24 @@ text-align: left;
 .privacy-notice p {font-size: .88rem;line-height: 1.55;color: var(--text-main);font-weight: 500;}
 .privacy-notice strong {color: var(--marsala-dark);font-weight: 800;}
 
+/* Links interativos nos textos de privacidade */
+.privacy-interactive-link {
+background: none;
+border: none;
+color: var(--marsala-dark);
+font-weight: 800;
+font-size: inherit;
+cursor: pointer;
+padding: 0;
+text-decoration: underline;
+transition: color .2s;
+display: inline;
+}
+
+.privacy-interactive-link:hover {
+color: var(--danger);
+}
+
 .grid-cards {display: grid;grid-template-columns: repeat(4,1fr);gap: 14px;}
 .emergency-grid {display: grid;grid-template-columns: repeat(auto-fit,minmax(240px,1fr));gap: 14px;}
 
@@ -363,6 +392,87 @@ gap: 6px;
 transition: all .2s ease;
 }
 .back-home-btn:hover {background: var(--danger);}
+
+.lgpd-banner-btn {
+background: var(--glass-bg);
+border: 2px solid rgba(138,115,145,.25);
+border-radius: var(--radius);
+padding: 18px 20px;
+width: 100%;
+max-width: 900px;
+margin: 10px auto 25px auto;
+display: flex;
+align-items: center;
+gap: 16px;
+text-align: left;
+cursor: pointer;
+box-shadow: var(--shadow);
+transition: all .25s ease;
+}
+
+.lgpd-banner-btn:hover {
+border-color: var(--marsala);
+transform: translateY(-2px);
+background: rgba(255,255,255,1);
+}
+
+.lgpd-banner-btn .lgpd-icon-box {
+background: var(--danger);
+color: #fff;
+width: 45px;
+height: 45px;
+min-width: 45px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+box-shadow: 0 3px 10px rgba(166,58,80,.25);
+}
+
+.lgpd-banner-btn .lgpd-text-content p {
+font-size: .88rem;
+color: var(--text-main);
+font-weight: 500;
+line-height: 1.45;
+}
+
+.lgpd-banner-btn .lgpd-text-content p strong {
+color: var(--marsala-dark);
+font-weight: 700;
+}
+
+.lgpd-law-content h4 {
+color: var(--marsala-dark);
+font-size: 1.05rem;
+font-weight: 800;
+margin-top: 16px;
+margin-bottom: 6px;
+border-bottom: 1px solid rgba(138,115,145,.2);
+padding-bottom: 4px;
+}
+
+.lgpd-law-content p {
+font-size: .85rem;
+line-height: 1.55;
+color: var(--text-main);
+margin-bottom: 8px;
+font-weight: 500;
+text-align: justify;
+}
+
+.lgpd-law-content ul {
+margin-left: 20px;
+margin-bottom: 10px;
+}
+
+.lgpd-law-content li {
+font-size: .85rem;
+line-height: 1.5;
+color: var(--text-muted);
+margin-bottom: 4px;
+font-weight: 500;
+}
 
 .floating-actions {
 position: fixed;
@@ -411,7 +521,8 @@ body.high-contrast .top-wrapper,
 body.high-contrast .accessibility-bar,
 body.high-contrast .emergency-card,
 body.high-contrast .menu-card-btn,
-body.high-contrast .access-btn {background: #121212 !important;border-color: #fff !important;color: #fff !important;}
+body.high-contrast .access-btn,
+body.high-contrast .lgpd-banner-btn {background: #121212 !important;border-color: #fff !important;color: #fff !important;}
 body.high-contrast .floating-actions {background: transparent !important;border-color: transparent !important;}
 body.high-contrast .action-btn-180,
 body.high-contrast .sos-escape-btn {background: #8a7391 !important;border: 1px solid #fff !important;color: #fff !important;}
@@ -419,8 +530,12 @@ body.high-contrast p,
 body.high-contrast h1,
 body.high-contrast h2,
 body.high-contrast h3,
+body.high-contrast h4,
 body.high-contrast span,
+body.high-contrast li,
 body.high-contrast button {color: #fff !important;}
+body.high-contrast .privacy-interactive-link {color: #f8d8e8 !important;}
+body.high-contrast .privacy-interactive-link:hover {color: var(--danger) !important;}
 body.high-contrast .slogan-frase {color: #ffffff !important;}
 body.high-contrast .slogan-frase:hover {color: #f8d8e8 !important;}
 body.high-contrast .slogan-frase strong,
@@ -433,7 +548,7 @@ body.high-contrast .hero-title .frase-voz:hover,
 body.high-contrast .hero-title .frase-seguranca:hover {color: #f8d8e8 !important;}
 body.high-contrast .hero-image-box img {border-color: #f8d8e8 !important;}
 body.high-contrast .imagem-projeto {border-color: #f8d8e8 !important;}
-body.high-contrast .imagem-fundadora {border-color: #f8d8e8 !important;}
+body.high-contrast .imagem-fundadora-container {border-color: #f8d8e8 !important;}
 body.high-contrast .slogan-frase + .slogan-frase {border-top-color: #f8d8e8 !important;}
 body.high-contrast .privacy-notice p strong {color: #f8d8e8 !important;}
 body.high-contrast .access-btn:hover {background: var(--marsala) !important;border-color: var(--marsala) !important;}
@@ -447,6 +562,9 @@ body.high-contrast .menu-card-btn:hover span {color: #fff !important;}
 body.high-contrast .back-home-btn:hover {background: var(--danger) !important;color: #fff !important;}
 body.high-contrast .action-btn-180:hover,
 body.high-contrast .sos-escape-btn:hover {background: var(--danger-hover) !important;color: #fff !important;}
+body.high-contrast .lgpd-banner-btn:hover {border-color: #f8d8e8 !important;background: #1a1a1a !important;}
+body.high-contrast .lgpd-banner-btn .lgpd-text-content p,
+body.high-contrast .lgpd-banner-btn .lgpd-text-content p strong {color: #fff !important;}
 
 @media(max-width:768px) {
 nav {display: flex !important;width: 100%;justify-content: center;overflow-x: auto;padding: 6px 0;}
@@ -471,6 +589,8 @@ header {flex-direction: column;gap: 8px;padding: 30px 5% 24px 5%;}
 .action-btn-180,
 .sos-escape-btn {min-height: 44px;padding: 9px 15px;font-size: .82rem;max-width: none;}
 .grid-cards {grid-template-columns: repeat(2,1fr);}
+.lgpd-banner-btn {padding: 14px 16px;gap: 12px;}
+.lgpd-banner-btn .lgpd-icon-box {width: 40px;height: 40px;min-width: 40px;font-size: 1rem;}
 }
 
 @media(max-width:480px) {
@@ -613,12 +733,14 @@ nav button.nav-link {font-size: .68rem;}
 <h3>Cíntia Lo Bianco</h3>
 <p>Idealizadora do projeto com foco em impacto social. Estudante de Gestão da Tecnologia da Informação (GTI), unindo o olhar humanizado à proteção de dados e segurança digital para garantir maior privacidade e segurança às visitantes.</p>
 
+<div class="imagem-fundadora-container">
 <img 
   src="imagemcintia.jpeg" 
   alt="Cíntia Lo Bianco, idealizadora do projeto Ela Tem Voz"
   class="imagem-fundadora"
   onerror="this.src='https://images.unsplash.com/photo-1580894894513-541e068a3e29?w=400&h=400&fit=crop&crop=face'"
 >
+</div>
 </div>
 <div class="back-home-container">
 <button class="back-home-btn" onclick="showScreen('inicio')">
@@ -629,20 +751,169 @@ nav button.nav-link {font-size: .68rem;}
 
 <!-- CONTATO -->
 <div id="screen-contato" class="screen">
-<div style="display:flex; justify-content:center; width:100%; margin: 10px 0 30px 0;">
+<div style="display:flex; justify-content:center; width:100%; margin: 10px 0 20px 0;">
 <img 
-  src="contatoelatemvoz2.png" 
+  src="contatoelatemvoz3.png" 
   alt="Contato — Ela Tem Voz"
   style="width:100%; max-width:900px; height:auto; border-radius:16px; box-shadow:0 4px 14px rgba(138,115,145,.15); display:block; margin:0 auto; transition: transform .3s ease;"
   onmouseover="this.style.transform='translateY(-3px)';"
   onmouseout="this.style.transform='translateY(0)';"
-  onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<div style=\'padding:24px; border:3px dashed #a63a50; border-radius:16px; text-align:center; color:#a63a50; font-weight:bold; font-size:1rem;\'>⚠️ Imagem não encontrada!<br>Salve a imagem como: <strong>contatoelatemvoz2.png</strong><br>na mesma pasta do arquivo .html</div>');"
+  onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<div style=\'padding:24px; border:3px dashed #a63a50; border-radius:16px; text-align:center; color:#a63a50; font-weight:bold; font-size:1rem;\'>⚠️ Imagem não encontrada!<br>Salve a imagem como: <strong>contatoelatemvoz3.png</strong><br>na mesma pasta do arquivo .html</div>');"
 >
 </div>
+
+<!-- BANNER CLICÁVEL DA LGPD -->
+<button class="lgpd-banner-btn" onclick="showScreen('lgpd-detalhes')">
+<div class="lgpd-icon-box">
+<i class="fas fa-lock"></i>
+</div>
+<div class="lgpd-text-content">
+<p>Seu contato é <strong>confidencial</strong> e protegido conforme a <strong>Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018)</strong>. Tudo o que for compartilhado aqui no site está rigorosamente protegido e blindado por padrões corporativos de segurança.</p>
+</div>
+</button>
 
 <div class="back-home-container">
 <button class="back-home-btn" onclick="showScreen('inicio')">
 <i class="fas fa-arrow-left"></i> Início
+</button>
+</div>
+</div>
+
+<!-- DETALHES DA CONFIDENCIALIDADE (TELA COMPLETA) -->
+<div id="screen-confidencial-detalhes" class="screen">
+<div class="section-title">
+<h2>Compromisso com a Confidencialidade</h2>
+<p>Como garantimos o sigilo absoluto e a segurança das suas interações.</p>
+</div>
+
+<div class="glass-card card privacy-notice" style="margin-bottom: 20px;">
+<i class="fas fa-user-shield"></i>
+<h3>Sigilo Absoluto e Acolhimento Seguro</h3>
+<p>No <strong>Ela Tem Voz</strong>, entendemos que a confidencialidade é o pilar fundamental para que você possa buscar orientação, ler conteúdos e interagir com tranquilidade. Cada recurso tecnológico e diretriz operacional deste portal foi desenhado para preservar a sua identidade e proteger a sua privacidade contra qualquer forma de exposição indesejada.</p>
+</div>
+
+<div class="glass-card card lgpd-law-content">
+<i class="fas fa-lock"></i>
+<h3>Diretrizes de Sigilo e Proteção da Informação</h3>
+<p><strong>1. Arquitetura de Navegação Sigilosa:</strong> Nosso portal foi construído incentivando e facilitando o uso de ferramentas de navegação anônima e boas práticas locais para que nenhum registro incriminador fique visível no seu dispositivo.</p>
+<p><strong>2. Ausência de Rastreamento Comercial:</strong> Não coletamos dados desnecessários, nem comercializamos informações pessoais. O seu acesso é estritamente privado.</p>
+<p><strong>3. Mecanismos de Saída Rápida:</strong> A qualquer momento, o botão de "Sair Rápido" na barra inferior redireciona instantaneamente o seu navegador para uma página neutra (como o Google), apagando o foco imediato desta tela.</p>
+<p><strong>4. Compromisso Humano:</strong> Inspirados por valores éticos profundos, garantimos que o acolhimento oferecido venha acompanhado de responsabilidade técnica e respeito inegociável à sua história e à sua integridade.</p>
+</div>
+
+<div class="back-home-container">
+<button class="back-home-btn" onclick="showScreen('seguranca')">
+<i class="fas fa-arrow-left"></i> Voltar para Privacidade
+</button>
+</div>
+</div>
+
+<!-- DETALHES DA LGPD (TELA COMPLETA COM A LEI) -->
+<div id="screen-lgpd-detalhes" class="screen">
+<div class="section-title">
+<h2>Lei Geral de Proteção de Dados (LGPD)</h2>
+<p>Lei nº 13.709, de 14 de agosto de 2018 — Legislação Federal Completa</p>
+</div>
+
+<div class="glass-card card privacy-notice" style="margin-bottom: 20px;">
+<i class="fas fa-shield-alt"></i>
+<h3>Garantia de Confidencialidade Absoluta</h3>
+<p>Reafirmamos o nosso compromisso inegociável com a sua privacidade: <strong>tudo o que for compartilhado neste site está devidamente blindado e protegido por protocolos rígidos de segurança da informação, assegurando total confidencialidade e integridade aos seus dados em conformidade legal com a legislação brasileira.</strong></p>
+</div>
+
+<div class="glass-card card lgpd-law-content">
+<i class="fas fa-balance-scale"></i>
+<h3>LEI Nº 13.709, DE 14 DE AGOSTO DE 2018</h3>
+<p><strong>Mensagem de veto</strong> | <strong>(Vide Vigência)</strong></p>
+<p>Dispõe sobre a proteção de dados pessoais e altera a Lei nº 12.965, de 23 de abril de 2014 (Marco Civil da Internet).</p>
+
+<h4>CAPÍTULO I — DISPOSIÇÕES PRELIMINARES</h4>
+<p><strong>Art. 1º</strong> Esta Lei dispõe sobre o tratamento de dados pessoais, inclusive nos meios digitais, por pessoa natural ou por pessoa jurídica de direito público ou privado, com o objetivo de proteger os direitos fundamentais de liberdade e de privacidade e o livre desenvolvimento da personalidade da pessoa natural.</p>
+<p><em>Parágrafo único.</em> As normas gerais contidas nesta Lei são de interesse nacional e devem ser observadas pela União, pelos Estados, pelo Distrito Federal e pelos Municípios.</p>
+
+<p><strong>Art. 2º</strong> A disciplina da proteção de dados pessoais fundamenta-se nos seguintes aspectos:</p>
+<ul>
+<li>I - o respeito à privacidade;</li>
+<li>II - a autodeterminação informativa;</li>
+<li>III - a liberdade de expressão, de informação, de comunicação e de opinião;</li>
+<li>IV - a inviolabilidade da intimidade, da honra e da imagem;</li>
+<li>V - o desenvolvimento econômico e tecnológico e a inovação;</li>
+<li>VI - a livre iniciativa, a livre concorrência e a defesa do consumidor; e</li>
+<li>VII - os direitos humanos, o livre desenvolvimento da personalidade, a dignidade e o exercício da cidadania pelas pessoas naturais.</li>
+</ul>
+
+<p><strong>Art. 3º</strong> Aplica-se a lei de proteção de dados a qualquer operação de tratamento realizada por pessoa natural ou jurídica de direito público ou privado, independentemente do meio, do país de sua sede ou do país onde estejam localizados os dados, desde que:</p>
+<ul>
+<li>I - a operação de tratamento seja realizada no território nacional;</li>
+<li>II - a atividade de tratamento tenha por objetivo a oferta ou o fornecimento de bens ou serviços ou o tratamento de dados de indivíduos localizados no território nacional; ou</li>
+<li>III - os dados pessoais objeto do tratamento tenham sido coletados no território nacional.</li>
+</ul>
+
+<p><strong>Art. 4º</strong> Esta Lei não se aplica ao tratamento de dados pessoais:</p>
+<ul>
+<li>I - realizado por pessoa natural para fins exclusivamente particulares e não econômicos;</li>
+<li>II - realizado para fins exclusivamente: a) jornalístico-artísticos; b) acadêmicos;</li>
+<li>III - realizado para fins de segurança pública, defesa nacional, segurança do Estado ou atividades de investigação e repressão de infrações penais; ou</li>
+<li>IV - oriundos de fora do território nacional e que não sejam objeto de comunicação, uso compartilhado de dados com agentes de tratamento brasileiros ou objeto de transferência internacional de dados com o país de origem, desde que o país de origem proporcione grau de proteção de dados adequado ao previsto nesta Lei.</li>
+</ul>
+
+<p><strong>Art. 5º</strong> Para os fins desta Lei, considera-se:</p>
+<ul>
+<li>I - dado pessoal: informação relacionada a pessoa natural identificada ou identificável;</li>
+<li>II - dado pessoal sensível: dado pessoal sobre origem racial ou étnica, convicção religiosa, opinião política, filiação a sindicato ou a organização de caráter religioso, filosófico ou político, dado referente à saúde ou à vida sexual, dado genético ou biométrico, quando vinculado a uma pessoa natural;</li>
+<li>III - dado anonimizado: dado relativo a titular que não possa ser identificado, considerando a utilização de meios técnicos razoáveis e disponíveis na ocasião de seu tratamento;</li>
+<li>IV - banco de dados: conjunto estruturado de dados pessoais, estabelecido em um ou mais locais, em suporte eletrônico ou físico;</li>
+<li>V - titular: pessoa natural a quem se referem os dados pessoais que são objeto de tratamento;</li>
+<li>VI - controlador: pessoa natural ou jurídica, de direito público ou privado, a quem competem as decisões referentes ao tratamento de dados pessoais;</li>
+<li>VII - operador: pessoa natural ou jurídica, de direito público ou privado, que realiza o tratamento de dados pessoais em nome do controlador;</li>
+<li>VIII - encarregado: pessoa indicada pelo controlador e operador para atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (ANPD);</li>
+<li>IX - agentes de tratamento: o controlador e o operador;</li>
+<li>X - tratamento: toda operação realizada com dados pessoais, como a coleta, produção, recepção, classificação, utilização, acesso, reprodução, transmissão, distribuição, processamento, arquivamento, armazenamento, eliminação, avaliação ou controle da informação, modificação, comunicação, transferência, difusão ou extração;</li>
+<li>XI - anonimização: utilização de meios técnicos razoáveis e disponíveis no momento do tratamento, por meio dos quais um dado perde a possibilidade de associação, direta ou indireta, a um indivíduo;</li>
+<li>XII - consentimento: manifestação livre, informada e inequívoca pela qual o titular concorda com o tratamento de seus dados pessoais para uma finalidade determinada;</li>
+<li>XIII - bloqueio: suspensão temporária de qualquer operação de tratamento, mediante guarda do dado pessoal ou do banco de dados;</li>
+<li>XIV - eliminação: exclusão de dado ou de conjunto de dados armazenados em banco de dados, independentemente do procedimento empregado;</li>
+<li>XV - transferência internacional de dados pessoais: transferência de dados pessoais para país estrangeiro ou organismo internacional do qual o país seja membro;</li>
+<li>XVI - uso compartilhado de dados: comunicação, difusão, transferência internacional, interconexão de dados pessoais ou tratamento compartilhado de bancos de dados pessoais por órgãos e entidades públicos no cumprimento de suas competências legais, ou entre entes privados, com autorização específica, para uma ou mais modalidades de tratamento permitidas esses entes públicos, ou entre entes privados;</li>
+<li>XVII - relatório de proteção de dados pessoais: documentação do controlador que contém a descrição dos processos de tratamento de dados pessoais que podem gerar riscos às liberdades civis e aos direitos fundamentais, bem como medidas, salvaguardas e mecanismos de mitigação de risco;</li>
+<li>XVIII - autoridade nacional: órgão da administração pública responsável por zelar, implementar e fiscalizar o cumprimento desta Lei em todo o território nacional.</li>
+</ul>
+
+<p><strong>Art. 6º</strong> As atividades de tratamento de dados pessoais deverão observar a boa-fé e os seguintes princípios:</p>
+<ul>
+<li>I - finalidade: realização do tratamento para propósitos legítimos, específicos, explícitos e informados ao titular, sem possibilidade de tratamento posterior de forma incompatível com essas finalidades;</li>
+<li>II - adequação: compatibilidade do tratamento com as finalidades informadas ao titular, de acordo com o contexto do tratamento;</li>
+<li>III - necessidade: limitação do tratamento ao mínimo necessário para a realização de suas finalidades, com abrangência dos dados pertinentes, proporcionais e não excessivos em relação às finalidades do tratamento de dados;</li>
+<li>IV - livre acesso: garantia, aos titulares, de consulta facilitada e gratuita sobre a forma e a duração do tratamento, bem como sobre a integralidade de seus dados pessoais;</li>
+<li>V - qualidade dos dados: garantia, aos titulares, de exatidão, clareza, relevância e atualização dos dados, de acordo com a necessidade e para o cumprimento da finalidade de seu tratamento;</li>
+<li>VI - transparência: garantia, aos titulares, de informações claras, precisas e facilmente acessíveis sobre a realização do tratamento e os respectivos agentes de tratamento, observados os segredos comercial e industrial;</li>
+<li>VII - segurança: utilização de medidas técnicas e administrativas aptas a proteger os dados pessoais de acessos não autorizados e de situações acidentais ou ilícitas de destruição, perda, alteração, comunicação ou difusão;</li>
+<li>VIII - prevenção: adoção de medidas aptas a prevenir a ocorrência de danos em virtude do tratamento de dados pessoais;</li>
+<li>IX - não discriminação: impossibilidade de realização do tratamento para fins discriminatórios ilícitos ou abusivos;</li>
+<li>X - responsabilização e prestação de contas: demonstração, pelo agente, da adoção de medidas eficazes e capazes de comprovar a observância e o cumprimento das normas de proteção de dados pessoais e, inclusive, da eficácia dessas medidas.</li>
+</ul>
+
+<h4>CAPÍTULO II — DO TRATAMENTO DE DADOS PESSOAIS</h4>
+<p><strong>Art. 7º</strong> O tratamento de dados pessoais somente poderá ser realizado nas seguintes hipóteses:</p>
+<ul>
+<li>I - mediante fornecimento de consentimento pelo titular;</li>
+<li>II - para o cumprimento de obrigação legal ou regulatória pelo controlador;</li>
+<li>III - pela administração pública, para o tratamento e uso compartilhado de dados necessários à execução de políticas públicas previstas em leis e regulamentos ou respaldadas em contratos, convênios ou instrumentos congêneres;</li>
+<li>IV - para a realização de estudos por órgão de pesquisa, garantida, sempre que possível, a anonimização dos dados pessoais;</li>
+<li>V - quando necessário para a execução de contrato ou de procedimentos preliminares relacionados a contrato do qual seja parte o titular, a pedido do titular dos dados;</li>
+<li>VI - para o exercício regular de direitos em processo judicial, administrativo ou arbitral, esse último nos termos da Lei nº 9.307, de 23 de setembro de 1996 (Lei de Arbitragem);</li>
+<li>VII - para a proteção da vida ou da incolumidade física do titular ou de terceiro;</li>
+<li>VIII - para a tutela da saúde, exclusivamente, em procedimento realizado por profissionais de saúde, serviços de saúde ou autoridade sanitária;</li>
+<li>IX - quando necessário para atender aos interesses legítimos do controlador ou de terceiro, exceto no caso de prevalecerem os direitos e liberdades fundamentais do titular que exijam a proteção dos dados pessoais; ou</li>
+<li>X - para a proteção do crédito, inclusive quanto ao disposto na legislação pertinente.</li>
+</ul>
+
+<p><em>(Nota: A lei prossegue detalhando as disposições sobre dados sensíveis, direitos do titular, controlador, operador, segurança, boas práticas, transferência internacional, ANPD e sanções administrativas, compondo o texto integral normativo aplicável no ordenamento jurídico brasileiro).</em></p>
+</div>
+
+<div class="back-home-container">
+<button class="back-home-btn" onclick="showScreen('seguranca')">
+<i class="fas fa-arrow-left"></i> Voltar para Privacidade
 </button>
 </div>
 </div>
@@ -731,7 +1002,7 @@ nav button.nav-link {font-size: .68rem;}
 <div class="glass-card card privacy-notice">
 <i class="fas fa-shield-alt"></i>
 <h3>Sua privacidade é prioridade</h3>
-<p>Este espaço foi desenvolvido para oferecer acolhimento e segurança. As informações fornecidas são tratadas de forma <strong>confidencial</strong>, com medidas de proteção e respeito aos princípios da <strong>Lei Geral de Proteção de Dados (LGPD)</strong>.</p>
+<p>Este espaço foi desenvolvido para oferecer acolhimento e segurança. As informações fornecidas são tratadas de forma <button class="privacy-interactive-link" onclick="showScreen('confidencial-detalhes')">confidencial</button>, com medidas de proteção e respeito aos princípios da <button class="privacy-interactive-link" onclick="showScreen('lgpd-detalhes')">Lei Geral de Proteção de Dados (LGPD)</button>.</p>
 </div>
 
 <div class="glass-card card">
@@ -754,7 +1025,7 @@ nav button.nav-link {font-size: .68rem;}
 <h3>Como Apagar o Histórico de Chamadas e Conversas</h3>
 <p><strong>No iPhone (iOS):</strong><br>1 — Abra o aplicativo Telefone.<br>2 — Toque na aba Recentes.<br>3 — Deslize da direita para esquerda e toque em Apagar.<br><br>
 <strong>Em Android:</strong><br>1 — Abra o aplicativo Telefone.<br>2 — Toque na aba Recentes.<br>3 — Segure a chamada e toque em excluir.<br><br>
-<strong>Para apagar conversas do WhatsApp:</strong><br>No iPhone: deslize o chat e toque em Mais → Apagar conversa.<br>No Android: segure o chat → ícone da Lixeira → confirme.</p>
+2 — Para apagar conversas do WhatsApp:<br>No iPhone: deslize o chat e toque em Mais → Apagar conversa.<br>No Android: segure o chat → ícone da Lixeira → confirme.</p>
 </div>
 
 <div class="glass-card card">
@@ -805,16 +1076,16 @@ function sairRapido(event) {
     window.location.replace('https://www.google.com');
 }
 
-function toggleContrast() {
-    document.body.classList.toggle('high-contrast');
-}
-
 let currentScale = 1;
 function changeFontSize(direction) {
     currentScale += direction * 0.05;
     if (currentScale < 0.85) currentScale = 0.85;
     if (currentScale > 1.35) currentScale = 1.35;
     document.documentElement.style.setProperty('--font-scale', currentScale + 'rem');
+}
+
+function toggleContrast() {
+    document.body.classList.toggle('high-contrast');
 }
 </script>
 </body>
