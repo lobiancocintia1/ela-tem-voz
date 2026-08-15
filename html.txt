@@ -584,7 +584,7 @@ nav button.nav-link {font-size: .68rem;}
 </div>
 </div>
 
-<!-- ✅ VÍDEOS — TOTALMENTE RESTAURADA -->
+<!-- VÍDEOS -->
 <div id="screen-videos" class="screen">
 <div class="section-title">
 <h2>Vídeos</h2>
@@ -627,16 +627,16 @@ nav button.nav-link {font-size: .68rem;}
 </div>
 </div>
 
-<!-- ✅ ABA CONTATO — COM SOLUÇÃO ANTI-CACHE -->
+<!-- CONTATO -->
 <div id="screen-contato" class="screen">
 <div style="display:flex; justify-content:center; width:100%; margin: 10px 0 30px 0;">
 <img 
-  src="contatoelatemvoz2.png?v=2" 
+  src="contatoelatemvoz2.png?v=3" 
   alt="Contato — Ela Tem Voz"
   style="width:100%; max-width:900px; height:auto; border-radius:16px; box-shadow:0 4px 14px rgba(138,115,145,.15); display:block; margin:0 auto; transition: transform .3s ease;"
   onmouseover="this.style.transform='translateY(-3px)';"
   onmouseout="this.style.transform='translateY(0)';"
-  onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<div style=\'padding:24px; border:3px dashed #a63a50; border-radius:16px; text-align:center; color:#a63a50; font-weight:bold; font-size:1rem;\'>⚠️ Imagem não encontrada!<br>Salve a imagem como: <strong>contatoelatemvoz2.png</strong><br>na mesma pasta do arquivo .html</div>');"
+  onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<div style=\'padding:24px; border:3px dashed #a63a50; border-radius:16px; text-align:center; color:#a63a50; font-weight:bold; font-size:1rem;\'>⚠️ Imagem não encontrada!<br>Verifique o nome: <strong>contatoelatemvoz2.png</strong><br>Deve estar tudo em minúsculas e na mesma pasta!</div>');"
 >
 </div>
 
